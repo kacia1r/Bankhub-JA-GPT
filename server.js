@@ -22,7 +22,7 @@ app.post("/api/chat", async (req, res) => {
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 60000);
+    const timeout = setTimeout(() => controller.abort(), 180000);
 
     const response = await fetch(process.env.ANYTHINGLLM_API_URL, {
       method: "POST",
