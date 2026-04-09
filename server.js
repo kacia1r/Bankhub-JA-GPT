@@ -33,9 +33,11 @@ app.post("/api/chat", async (req, res) => {
         Authorization: `Bearer ${process.env.ANYTHINGLLM_API_KEY}`,
       },
       body: JSON.stringify({
-  message: `Answer briefly in 3-5 sentences. ${message.trim()}`,
-  mode: "chat",
-}),
+        message: message.trim(),
+        mode: "chat",
+      }),
+      signal: controller.signal,
+    });
 
     clearTimeout(timeout);
 
