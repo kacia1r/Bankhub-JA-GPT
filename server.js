@@ -44,18 +44,32 @@ app.post("/api/chat", async (req, res) => {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("ANYTHINGLLM ERROR:", response.status, errorText);
-      return res.json({
-        reply: `AI error ${response.status}: ${errorText}`,
-      });
+
+      let cleanMessage = `AI error ${response.status}.`;
+
+      if (response.status === 524) {
+        cleanMessage = "The AI took too long to respond. Try a shorter question.";
+      } else if (response.status === 404) {
+        cleanMessage = "Workspace or endpoint not found.";
+      } else if (response.status === 401) {
+        cleanMessage = "API key is invalid.";
+      }
+
+      return res.json({ reply: cleanMessage });
     }
 
     const data = await response.json();
-    console.log("ANYTHINGLLM RESPONSE:", data);
+    console.log("ANYTHINGLLM RESPONSE:", JSON.stringify(data, null, 2));
 
     const reply =
+      data.textResponse ||
       data.text ||
       data.response ||
       data.message ||
+      data.reply ||
+      data?.data?.textResponse ||
+      data?.data?.text ||
+      data?.data?.response ||
       "No response from AI.";
 
     res.json({ reply });
