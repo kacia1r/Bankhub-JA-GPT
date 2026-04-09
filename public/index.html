@@ -9,117 +9,137 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+      --bg: #212121;
+      --sidebar: #171717;
+      --panel: #2a2a2a;
+      --panel-border: #3a3a3a;
+      --text: #ececec;
+      --muted: #a9a9a9;
+      --accent: #2f6fed;
+      --accent-hover: #3d7cff;
+      --assistant: #2b2b2b;
+      --assistant-border: #3b3b3b;
+      --topbar: #1f1f1f;
     }
 
     body {
-      background: #212121;
-      color: #ececec;
+      background: var(--bg);
+      color: var(--text);
       height: 100vh;
       overflow: hidden;
     }
 
     .app {
       display: flex;
-      height: 100vh;
       width: 100%;
+      height: 100vh;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 260px;
-      background: #171717;
-      border-right: 1px solid #2e2e2e;
+      background: var(--sidebar);
+      border-right: 1px solid #2c2c2c;
       display: flex;
       flex-direction: column;
       padding: 14px;
     }
 
     .logo {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 16px;
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.2px;
     }
 
     .new-chat-btn {
+      border: 1px solid var(--panel-border);
       background: #2f2f2f;
-      color: #fff;
-      border: 1px solid #3c3c3c;
-      border-radius: 10px;
-      padding: 12px;
+      color: white;
+      border-radius: 14px;
+      padding: 13px 14px;
       cursor: pointer;
-      margin-bottom: 18px;
-      transition: 0.2s;
+      font-size: 15px;
+      transition: 0.2s ease;
+      margin-bottom: 20px;
     }
 
     .new-chat-btn:hover {
-      background: #3a3a3a;
+      background: #373737;
+      transform: translateY(-1px);
     }
 
-    .sidebar-section-title {
+    .sidebar-title {
       font-size: 12px;
-      color: #9a9a9a;
-      margin-bottom: 10px;
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-bottom: 10px;
     }
 
-    .chat-history {
+    .tool-list {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      overflow-y: auto;
     }
 
-    .history-item {
+    .tool-item {
       background: transparent;
+      color: #f2f2f2;
       border: none;
-      color: #d8d8d8;
       text-align: left;
-      padding: 10px 12px;
-      border-radius: 10px;
+      padding: 12px 12px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.2s;
+      font-size: 15px;
+      transition: 0.2s ease;
     }
 
-    .history-item:hover {
-      background: #2a2a2a;
+    .tool-item:hover {
+      background: #292929;
     }
 
     .sidebar-footer {
       margin-top: auto;
       padding-top: 16px;
-      border-top: 1px solid #2e2e2e;
-      font-size: 13px;
-      color: #a5a5a5;
+      border-top: 1px solid #2c2c2c;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    /* Main chat area */
     .main {
       flex: 1;
       display: flex;
       flex-direction: column;
-      background: #212121;
+      background: var(--bg);
+      min-width: 0;
     }
 
     .topbar {
-      height: 60px;
+      height: 64px;
       display: flex;
       align-items: center;
-      padding: 0 22px;
-      border-bottom: 1px solid #2e2e2e;
-      font-size: 16px;
-      font-weight: 600;
+      padding: 0 24px;
+      border-bottom: 1px solid #2b2b2b;
+      background: var(--topbar);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
     }
 
     .chat-area {
       flex: 1;
       overflow-y: auto;
-      padding: 24px 20px 140px;
+      scroll-behavior: smooth;
+      padding: 24px 18px 150px;
     }
 
     .chat-container {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -128,54 +148,61 @@
 
     .welcome {
       text-align: center;
-      margin-top: 80px;
-      margin-bottom: 20px;
+      margin-top: 70px;
+      animation: fadeUp 0.5s ease;
     }
 
     .welcome h1 {
       font-size: 34px;
-      margin-bottom: 10px;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     .welcome p {
-      color: #b9b9b9;
+      color: var(--muted);
       font-size: 16px;
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.5;
     }
 
     .suggestions {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 28px;
     }
 
     .suggestion-card {
       background: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      border-radius: 16px;
+      border: 1px solid var(--panel-border);
+      border-radius: 18px;
       padding: 16px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.2s ease;
+      text-align: left;
     }
 
     .suggestion-card:hover {
       background: #333333;
+      transform: translateY(-2px);
     }
 
     .suggestion-card h3 {
       font-size: 15px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .suggestion-card p {
       font-size: 13px;
-      color: #bcbcbc;
-      line-height: 1.4;
+      color: var(--muted);
+      line-height: 1.5;
     }
 
     .message-row {
       display: flex;
       width: 100%;
+      animation: fadeUp 0.25s ease;
     }
 
     .message-row.user {
@@ -188,113 +215,154 @@
 
     .message {
       max-width: 78%;
-      padding: 15px 18px;
-      border-radius: 18px;
-      line-height: 1.6;
+      padding: 18px 20px;
+      border-radius: 22px;
+      line-height: 1.65;
       white-space: pre-wrap;
       word-wrap: break-word;
       font-size: 15px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
     }
 
     .message.user {
-      background: #2f6fed;
-      color: #fff;
-      border-bottom-right-radius: 6px;
+      background: var(--accent);
+      color: white;
+      border-bottom-right-radius: 8px;
+    }
+
+    .message.user:hover {
+      background: var(--accent-hover);
     }
 
     .message.bot {
-      background: #2b2b2b;
-      color: #f1f1f1;
-      border: 1px solid #3a3a3a;
-      border-bottom-left-radius: 6px;
+      background: var(--assistant);
+      color: #f3f3f3;
+      border: 1px solid var(--assistant-border);
+      border-bottom-left-radius: 8px;
+    }
+
+    .typing-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .typing-label {
+      color: #d7d7d7;
+      font-size: 14px;
     }
 
     .typing {
       display: inline-flex;
-      gap: 6px;
+      gap: 5px;
       align-items: center;
     }
 
     .typing span {
       width: 8px;
       height: 8px;
-      background: #bcbcbc;
       border-radius: 50%;
-      display: inline-block;
-      animation: bounce 1.2s infinite ease-in-out;
+      background: #c6c6c6;
+      animation: blink 1.2s infinite ease-in-out;
     }
 
     .typing span:nth-child(2) {
-      animation-delay: 0.2s;
+      animation-delay: 0.15s;
     }
 
     .typing span:nth-child(3) {
-      animation-delay: 0.4s;
+      animation-delay: 0.3s;
     }
 
-    @keyframes bounce {
-      0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
-      40% { transform: scale(1); opacity: 1; }
-    }
-
-    /* Input area */
-    .input-wrapper {
+    .input-shell {
       position: fixed;
       bottom: 0;
       left: 260px;
       right: 0;
-      background: linear-gradient(to top, #212121 75%, rgba(33,33,33,0));
-      padding: 18px 20px 24px;
+      padding: 20px 18px 24px;
+      background: linear-gradient(to top, rgba(33,33,33,1) 76%, rgba(33,33,33,0));
     }
 
-    .input-container {
-      max-width: 850px;
+    .input-box {
+      max-width: 900px;
       margin: 0 auto;
       background: #2a2a2a;
-      border: 1px solid #3a3a3a;
-      border-radius: 22px;
-      padding: 12px;
+      border: 1px solid #3c3c3c;
+      border-radius: 26px;
       display: flex;
       align-items: flex-end;
       gap: 10px;
+      padding: 12px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
     }
 
-    .input-container textarea {
+    textarea {
       flex: 1;
       background: transparent;
+      color: white;
       border: none;
       outline: none;
-      color: #fff;
       resize: none;
-      font-size: 15px;
-      line-height: 1.5;
       min-height: 26px;
       max-height: 180px;
+      font-size: 15px;
+      line-height: 1.5;
       padding: 8px;
     }
 
     .send-btn {
-      background: #fff;
-      color: #111;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
       border: none;
-      border-radius: 14px;
-      width: 46px;
-      height: 46px;
-      cursor: pointer;
+      background: white;
+      color: #111;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      flex-shrink: 0;
     }
 
     .send-btn:hover {
-      opacity: 0.9;
+      transform: scale(1.04);
+      opacity: 0.95;
+    }
+
+    .send-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
     }
 
     .note {
-      max-width: 850px;
+      max-width: 900px;
       margin: 10px auto 0;
-      text-align: center;
       font-size: 12px;
-      color: #9f9f9f;
+      color: #9a9a9a;
+      text-align: center;
+    }
+
+    @keyframes blink {
+      0%, 80%, 100% {
+        opacity: 0.35;
+        transform: scale(0.8);
+      }
+      40% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (max-width: 900px) {
@@ -302,7 +370,7 @@
         display: none;
       }
 
-      .input-wrapper {
+      .input-shell {
         left: 0;
       }
 
@@ -311,7 +379,7 @@
       }
 
       .welcome h1 {
-        font-size: 26px;
+        font-size: 28px;
       }
     }
   </style>
@@ -322,17 +390,18 @@
       <div class="logo">BankHub GPT</div>
       <button class="new-chat-btn" onclick="startNewChat()">+ New chat</button>
 
-      <div class="sidebar-section-title">Banking Tools</div>
-      <div class="chat-history">
-        <button class="history-item" onclick="quickPrompt('Compare savings accounts across Jamaican banks')">Compare Accounts</button>
-        <button class="history-item" onclick="quickPrompt('Explain personal loan options in Jamaica')">Loan Help</button>
-        <button class="history-item" onclick="quickPrompt('What are common bank fees in Jamaica?')">Bank Fees</button>
-        <button class="history-item" onclick="quickPrompt('Give fraud prevention tips for online banking')">Fraud Help</button>
-        <button class="history-item" onclick="quickPrompt('What documents do I need to open a business account?')">Business Banking</button>
+      <div class="sidebar-title">Banking Tools</div>
+      <div class="tool-list">
+        <button class="tool-item" onclick="quickPrompt('Compare savings accounts across major Jamaican banks')">Compare Accounts</button>
+        <button class="tool-item" onclick="quickPrompt('Explain personal loan options in Jamaica')">Loan Help</button>
+        <button class="tool-item" onclick="quickPrompt('What are common bank fees in Jamaica?')">Bank Fees</button>
+        <button class="tool-item" onclick="quickPrompt('How can I protect myself from banking fraud?')">Fraud Help</button>
+        <button class="tool-item" onclick="quickPrompt('What documents do I need to open a business account in Jamaica?')">Business Banking</button>
       </div>
 
       <div class="sidebar-footer">
-        AI banking assistant powered by your BankHub backend.
+        BankHub JA banking assistant.<br />
+        Powered through your backend and AnythingLLM.
       </div>
     </aside>
 
@@ -343,36 +412,36 @@
         <div class="chat-container" id="chatContainer">
           <div class="welcome" id="welcomeBlock">
             <h1>How can I help with banking today?</h1>
-            <p>Ask about fees, accounts, loans, fraud prevention, policies, and Jamaican banking services.</p>
+            <p>Ask about account requirements, loans, bank fees, fraud protection, and Jamaican banking information.</p>
 
             <div class="suggestions">
               <div class="suggestion-card" onclick="quickPrompt('Compare savings accounts across major Jamaican banks')">
                 <h3>Compare accounts</h3>
-                <p>Get quick side-by-side account comparisons.</p>
+                <p>See account options across Jamaican banks.</p>
               </div>
               <div class="suggestion-card" onclick="quickPrompt('What do I need to open a personal bank account in Jamaica?')">
                 <h3>Open an account</h3>
-                <p>Check requirements and documents needed.</p>
+                <p>Check the usual documents and requirements.</p>
               </div>
-              <div class="suggestion-card" onclick="quickPrompt('Explain mortgage and car loan options')">
+              <div class="suggestion-card" onclick="quickPrompt('Explain mortgage and car loan options in Jamaica')">
                 <h3>Loan guidance</h3>
-                <p>Understand borrowing choices more easily.</p>
+                <p>Understand common personal borrowing options.</p>
               </div>
               <div class="suggestion-card" onclick="quickPrompt('How can I protect myself from banking fraud?')">
                 <h3>Fraud help</h3>
-                <p>Learn how to stay safe with online banking.</p>
+                <p>Get safety tips for online and mobile banking.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="input-wrapper">
-        <div class="input-container">
+      <div class="input-shell">
+        <div class="input-box">
           <textarea id="userInput" placeholder="Message BankHub GPT..." rows="1"></textarea>
-          <button class="send-btn" onclick="sendMessage()">↑</button>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">↑</button>
         </div>
-        <div class="note">BankHub GPT may make mistakes. Verify important banking information before acting.</div>
+        <div class="note">BankHub GPT may make mistakes. Verify important banking details before acting.</div>
       </div>
     </main>
   </div>
@@ -381,7 +450,9 @@
     const userInput = document.getElementById("userInput");
     const chatContainer = document.getElementById("chatContainer");
     const chatArea = document.getElementById("chatArea");
-    const welcomeBlock = document.getElementById("welcomeBlock");
+    const sendBtn = document.getElementById("sendBtn");
+
+    let isWaiting = false;
 
     userInput.addEventListener("input", function () {
       this.style.height = "auto";
@@ -395,32 +466,40 @@
       }
     });
 
+    function scrollToBottom() {
+      chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
     function startNewChat() {
       chatContainer.innerHTML = `
         <div class="welcome" id="welcomeBlock">
           <h1>How can I help with banking today?</h1>
-          <p>Ask about fees, accounts, loans, fraud prevention, policies, and Jamaican banking services.</p>
+          <p>Ask about account requirements, loans, bank fees, fraud protection, and Jamaican banking information.</p>
 
           <div class="suggestions">
             <div class="suggestion-card" onclick="quickPrompt('Compare savings accounts across major Jamaican banks')">
               <h3>Compare accounts</h3>
-              <p>Get quick side-by-side account comparisons.</p>
+              <p>See account options across Jamaican banks.</p>
             </div>
             <div class="suggestion-card" onclick="quickPrompt('What do I need to open a personal bank account in Jamaica?')">
               <h3>Open an account</h3>
-              <p>Check requirements and documents needed.</p>
+              <p>Check the usual documents and requirements.</p>
             </div>
-            <div class="suggestion-card" onclick="quickPrompt('Explain mortgage and car loan options')">
+            <div class="suggestion-card" onclick="quickPrompt('Explain mortgage and car loan options in Jamaica')">
               <h3>Loan guidance</h3>
-              <p>Understand borrowing choices more easily.</p>
+              <p>Understand common personal borrowing options.</p>
             </div>
             <div class="suggestion-card" onclick="quickPrompt('How can I protect myself from banking fraud?')">
               <h3>Fraud help</h3>
-              <p>Learn how to stay safe with online banking.</p>
+              <p>Get safety tips for online and mobile banking.</p>
             </div>
           </div>
         </div>
       `;
+      userInput.value = "";
+      userInput.style.height = "auto";
+      isWaiting = false;
+      sendBtn.disabled = false;
     }
 
     function quickPrompt(text) {
@@ -434,14 +513,14 @@
       const row = document.createElement("div");
       row.className = `message-row ${sender}`;
 
-      const msg = document.createElement("div");
-      msg.className = `message ${sender}`;
-      msg.textContent = text;
+      const bubble = document.createElement("div");
+      bubble.className = `message ${sender}`;
+      bubble.textContent = text;
 
-      row.appendChild(msg);
+      row.appendChild(bubble);
       chatContainer.appendChild(row);
       scrollToBottom();
-      return msg;
+      return bubble;
     }
 
     function addTypingIndicator() {
@@ -449,39 +528,56 @@
       row.className = "message-row bot";
       row.id = "typingRow";
 
-      const msg = document.createElement("div");
-      msg.className = "message bot";
-      msg.innerHTML = `
-        <div class="typing">
-          <span></span><span></span><span></span>
+      const bubble = document.createElement("div");
+      bubble.className = "message bot";
+      bubble.innerHTML = `
+        <div class="typing-wrap">
+          <div class="typing-label">BankHub is thinking</div>
+          <div class="typing">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       `;
 
-      row.appendChild(msg);
+      row.appendChild(bubble);
       chatContainer.appendChild(row);
       scrollToBottom();
     }
 
     function removeTypingIndicator() {
-      const typingRow = document.getElementById("typingRow");
-      if (typingRow) typingRow.remove();
+      const row = document.getElementById("typingRow");
+      if (row) row.remove();
     }
 
-    function scrollToBottom() {
-      chatArea.scrollTop = chatArea.scrollHeight;
+    async function typeOutText(element, text, speed = 8) {
+      element.textContent = "";
+      for (let i = 0; i < text.length; i++) {
+        element.textContent += text[i];
+        if (i % 3 === 0) {
+          scrollToBottom();
+          await new Promise(resolve => setTimeout(resolve, speed));
+        }
+      }
+      scrollToBottom();
     }
 
     async function sendMessage() {
+      if (isWaiting) return;
+
       const message = userInput.value.trim();
       if (!message) return;
 
-      if (document.getElementById("welcomeBlock")) {
-        document.getElementById("welcomeBlock").remove();
-      }
+      const welcomeBlock = document.getElementById("welcomeBlock");
+      if (welcomeBlock) welcomeBlock.remove();
 
       addMessage(message, "user");
       userInput.value = "";
       userInput.style.height = "auto";
+
+      isWaiting = true;
+      sendBtn.disabled = true;
 
       addTypingIndicator();
 
@@ -503,10 +599,15 @@
           data.text ||
           "Sorry, I could not get a response right now.";
 
-        addMessage(reply, "bot");
+        const botBubble = addMessage("", "bot");
+        await typeOutText(botBubble, reply, 6);
       } catch (error) {
         removeTypingIndicator();
         addMessage("Connection error. Please check that your backend and AnythingLLM are running.", "bot");
+      } finally {
+        isWaiting = false;
+        sendBtn.disabled = false;
+        userInput.focus();
       }
     }
   </script>
